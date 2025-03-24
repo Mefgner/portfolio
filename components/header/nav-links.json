@@ -1,0 +1,14 @@
+[
+    {
+        "text": "Home",
+        "link": "index.php"
+    },
+    {
+        "text": "About",
+        "link": "about.php"
+    },
+    {
+        "text": "Contacts",
+        "link": "contact.php"
+    }
+]
