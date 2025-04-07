@@ -22,6 +22,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    try {
+        $db = new mysqli("localhost", "root", "", "portfolio");
+
+        if ($db->connect_error) {
+            echo "<div class='alert alert-error'>Connection failed to db with error code: " . $db->connect_error . "</div>";
+        } else {
+            $stmt = $db->prepare("SELECT answer, questions.question FROM answered_questions JOIN questions ON answered_questions.question_id = questions.id");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $answeredQuestions = [];
+
+            while ($row = $result->fetch_assoc()) {
+                $answeredQuestions[] = $row;
+            }
+
+            $stmt->close();
+            $db->close();
+        }
+    } catch (mysqli_sql_exception $e) {
+        echo "<div class='alert alert-error'>" . $e->getMessage() . "</div>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +57,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+    <?php if (!empty($answeredQuestions)): ?>
+        <div class="answered-questions">
+            <h3 class="answered-questions-title">Answered Questions</h3>
+            <?php foreach ($answeredQuestions as $qa): ?>
+                <div class="qa-item">
+                    <h4 class="question"><?php echo htmlspecialchars($qa['question']); ?></h4>
+                    <p class="answer"><?php echo htmlspecialchars($qa['answer']); ?></p>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <p>No answered questions yet.</p>
+    <?php endif; ?>
+
     <form method="POST" action="" class="qna-form">
         <div class="form-group">
             <label for="email">Your Email:</label>

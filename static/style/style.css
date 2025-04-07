@@ -92,10 +92,46 @@ body section {
 }
 
 .qna-form {
-    background: white;
+    background: #ffffff;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+.qna-form .form-group label {
+    font-size: 1rem;
+    color: #333;
+}
+
+.qna-form .form-control {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.8rem;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.qna-form .form-control:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.qna-form .btn-primary {
+    background: #3498db;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.qna-form .btn-primary:hover {
+    background: #2980b9;
+    transform: scale(1.05);
 }
 
 .form-group {
@@ -179,4 +215,42 @@ textarea.form-control {
 
 .footer-nav a:hover {
     color: #3498db;
+}
+
+/* Updated styles for better appearance */
+.answered-questions {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+.answered-questions-title{
+    margin-bottom: 1.5rem;
+}
+
+.qa-item {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qa-item .question {
+    color: #2c3e50;
+    margin-bottom: 0.75rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    line-height: 1.4;
+}
+
+.qa-item .answer {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 0.5rem;
 }
