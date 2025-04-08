@@ -18,6 +18,8 @@
         <h2>Question & Answers</h2>
         <p>Have a question? I'd be happy to answer. Fill out the form below to get in touch.</p>
 
+        <?php require_once 'components/answer_list.php' ?>
+
         <div class="form-container">
             <?php require_once 'components/forms/qna.php'; ?>
         </div>
