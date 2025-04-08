@@ -1,4 +1,7 @@
 <?php
+namespace Portfolio;
+
+use mysqli;
 class Database
 {
     protected $db = null;

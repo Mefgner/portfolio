@@ -1,6 +1,8 @@
 <?php require_once 'classes/qna.class.php' ?>
 
 <?php
+use Portfolio\QnA;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $question = filter_input(INPUT_POST, 'question', FILTER_SANITIZE_STRING);
