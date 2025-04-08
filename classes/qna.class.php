@@ -1,6 +1,11 @@
-<?php require_once 'classes/db.class.php' ?>
-
 <?php
+namespace Portfolio;
+
+require_once "db.class.php";
+
+use Portfolio\Database;
+use mysqli_sql_exception;
+
 class QnA extends Database
 {
     public function __construct($db)
