@@ -1,7 +1,7 @@
 <?php
 namespace Portfolio;
 
-require_once "db.class.php";
+require_once "database.php";
 
 use Portfolio\Database;
 use mysqli_sql_exception;
