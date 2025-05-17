@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <footer class="main-footer">
-        <div class="container">
-            <p>My Portfolio. All rights reserved.</p>
-            <nav class="footer-nav">
-                <a href="index.php">Home</a>
-                <a href="about.php">About</a>
-                <a href="contact.php">Contact</a>
-                <a href="qna.php">Q&A</a>
-            </nav>
-        </div>
-    </footer>
-</body>
-</html>
+<footer class="main-footer">
+    <div class="container">
+        <p>My Portfolio. All rights reserved.</p>
+        <?php include_once "components/nav.php" ?>
+        <?php renderFromFile('components/footer/nav-links.json', 'footer-nav') ?>
+    </div>
+</footer>
