@@ -19,29 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<form method="POST" action="" class="qna-form">
+    <div class="form-group">
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required class="form-control">
+    </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Your Question</title>
-</head>
+    <div class="form-group">
+        <label for="question">Your Question:</label>
+        <textarea id="question" name="question" rows="4" required class="form-control"></textarea>
+    </div>
 
-<body>
-    <form method="POST" action="" class="qna-form">
-        <div class="form-group">
-            <label for="email">Your Email:</label>
-            <input type="email" id="email" name="email" required class="form-control">
-        </div>
-
-        <div class="form-group">
-            <label for="question">Your Question:</label>
-            <textarea id="question" name="question" rows="4" required class="form-control"></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Submit Question</button>
-    </form>
-</body>
-
-</html>
+    <button type="submit" class="btn btn-primary">Submit Question</button>
+</form>
