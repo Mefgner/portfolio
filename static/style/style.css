@@ -254,3 +254,43 @@ textarea.form-control {
     line-height: 1.6;
     margin-top: 0.5rem;
 }
+/* Success Page Styles */
+.success-page-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 160px);
+    /* Adjust 160px based on header/footer height */
+    text-align: center;
+    padding: 2rem;
+}
+
+.success-message-container {
+    background: #ffffff;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid #ddd;
+    max-width: 600px;
+    width: 100%;
+}
+
+.success-message-container h1 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+}
+
+.success-message-container p {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+.success-message-container .btn-primary {
+    padding: 0.9rem 1.8rem;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
