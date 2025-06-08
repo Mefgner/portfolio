@@ -4,33 +4,38 @@ namespace Portfolio;
 use mysqli;
 class Database
 {
-    protected $db = null;
-    public function __construct($db)
+    protected $db;
+    public function __construct()
     {
-        if (is_null($db) || $db == "" || empty($db)) {
-            throw new \Exception("Database name cannot be null");
-        }
-
         $file = file_get_contents("db_config.json");
         $json = json_decode($file, true);
 
-        if (isset($json['host'])) {
-            $host = $json['host'];
-        } else {
-            $host = "localhost";
-        }
-        if (isset($json['user'])) {
-            $user = $json['user'];
-        } else {
-            $user = "root";
-        }
-        if (isset($json['password'])) {
-            $password = $json['password'];
-        } else {
-            $password = "";
+        $configFilePath = __DIR__ . '/../db_config.json';
+
+        if (!file_exists($configFilePath)) {
+            $resolvedPath = realpath($configFilePath) ?: $configFilePath;
+            throw new \RuntimeException("Database configuration file not found: " . $resolvedPath);
         }
 
-        $this->db = $this->connect($db, $host, $user, $password);
+        $configJson = file_get_contents($configFilePath);
+        if ($configJson === false) {
+            $resolvedPath = realpath($configFilePath) ?: $configFilePath;
+            throw new \RuntimeException("Unable to read database configuration file: " . $resolvedPath);
+        }
+
+        $dbConfigData = json_decode($configJson, true); // 'true' for an associative array
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            $resolvedPath = realpath($configFilePath) ?: $configFilePath;
+            throw new \RuntimeException("Error parsing JSON from database configuration file (" . $resolvedPath . "): " . json_last_error_msg());
+        }
+
+        $this->db = $this->connect(
+            $dbConfigData['database'] ?? 'portfolio',
+            $dbConfigData['host'] ?? 'localhost',
+            $dbConfigData['user'] ?? 'root',
+            $dbConfigData['password'] ?? ''
+        );
     }
     private function connect($db, $host = "localhost", $user = "root", $password = "")
     {
