@@ -1,0 +1,22 @@
+[
+    {
+        "text": "Home",
+        "link": "index.php"
+    },
+    {
+        "text": "About",
+        "link": "about.php"
+    },
+    {
+        "text": "Contacts",
+        "link": "contact.php"
+    },
+    {
+        "text": "Q&A",
+        "link": "qna.php"
+    },
+    {
+        "text": "Admin Panel",
+        "link": "admin.php"
+    }
+]

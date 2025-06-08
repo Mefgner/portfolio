@@ -1,4 +1,4 @@
-<?php require_once 'classes/qna.class.php' ?>
+<?php require_once 'classes/qna.php' ?>
 
 <?php
 use Portfolio\QnA;

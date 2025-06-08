@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <header>
-        <?php require_once "components/header/nav.php" ?>
-    </header>
-</body>
+<header>
+    <nav class="main-nav">
+        <div class="container">
+            <?php include_once "components/nav.php" ?>
+            <?php renderFromFile('components/header/nav_links.json', '') ?>
+        </div>
+    </nav>
+</header>
