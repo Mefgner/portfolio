@@ -1,10 +1,10 @@
 <?php require_once 'classes/qna.php' ?>
 
 <?php
-use Portfolio\QnA;
+use Portfolio\Entities\QnA;
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $qna = new QnA('portfolio');
+    $qna = new QnA();
     $answeredQuestions = $qna->getAnsweredQuestions();
 
     if (is_string($answeredQuestions)) {

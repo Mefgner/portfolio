@@ -1,5 +1,5 @@
 <?php
-namespace Portfolio;
+namespace Portfolio\Entities;
 
 require_once "database.php";
 
@@ -8,9 +8,9 @@ use mysqli_sql_exception;
 
 class QnA extends Database
 {
-    public function __construct($db)
+    public function __construct()
     {
-        parent::__construct($db);
+        parent::__construct();
     }
 
     public function submitQuestion($email, $question)
@@ -20,9 +20,35 @@ class QnA extends Database
             $stmt->bind_param("ss", $email, $question);
             $stmt->execute();
             $stmt->close();
-            return "<div class='alert alert-success'>Your question was uploaded successfully</div>";
+            return true;
         } catch (mysqli_sql_exception $e) {
-            return "<div class='alert alert-error'>" . $e->getMessage() . "</div>";
+            return false;
+        }
+    }
+
+    public function submitAnswer($questionId, $answer)
+    {
+        try {
+            $stmt = $this->db->prepare("INSERT INTO answered_questions (question_id, answer) VALUES (?, ?)");
+            $stmt->bind_param("is", $questionId, $answer);
+            $stmt->execute();
+            $stmt->close();
+            return true;
+        } catch (mysqli_sql_exception $e) {
+            return false;
+        }
+    }
+
+    public function deleteQuestion($id)
+    {
+        try {
+            $stmt = $this->db->prepare("DELETE FROM questions WHERE id = ?");
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $stmt->close();
+            return true;
+        } catch (mysqli_sql_exception $e) {
+            return false;
         }
     }
 
@@ -42,7 +68,7 @@ class QnA extends Database
             $stmt->close();
             return $answeredQuestions;
         } catch (mysqli_sql_exception $e) {
-            return "<div class='alert alert-error'>" . $e->getMessage() . "</div>";
+            return null;
         }
     }
 }
