@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             <h3 class="answered-questions-title">Answered Questions</h3>
             <?php foreach ($answeredQuestions as $qa): ?>
                 <div class="qa-item">
-                    <h4 class="question"><?php echo htmlspecialchars($qa['question']); ?></h4>
-                    <p class="answer"><?php echo htmlspecialchars($qa['answer']); ?></p>
+                    <h4 class="question"><?php echo $qa['question']; ?></h4>
+                    <p class="answer"><?php echo $qa['answer']; ?></p>
                 </div>
             <?php endforeach; ?>
         </div>

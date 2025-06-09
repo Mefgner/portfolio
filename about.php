@@ -8,8 +8,7 @@
 </head>
 <body>
     <?php
-        $pageTitle = "About Me";
-        require_once 'components/header.php';
+    require_once 'components/header.php';
     ?>
 
     <section class="about-section container">

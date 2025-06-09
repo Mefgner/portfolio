@@ -36,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <?php
-    $pageTitle = "Register";
     require_once 'components/header.php';
     ?>
 

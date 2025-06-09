@@ -10,7 +10,6 @@
 
 <body>
     <?php
-    $pageTitle = "Q&A";
     require_once 'components/header.php';
     ?>
 
