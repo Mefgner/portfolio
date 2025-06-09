@@ -30,7 +30,6 @@ if ($auth->isLoggedIn()) {
 
 <body>
     <?php
-    $pageTitle = "Login";
     require_once 'components/header.php';
     ?>
 

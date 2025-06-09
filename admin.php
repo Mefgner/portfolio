@@ -28,7 +28,6 @@ $user = $_SESSION['user'];
 
 <body>
     <?php
-    $pageTitle = "Admin";
     require_once 'components/header.php';
     ?>
 
@@ -37,7 +36,7 @@ $user = $_SESSION['user'];
 
         <div class="user-card">
             <h3>User Information</h3>
-            <p><strong>Name:</strong> <?php echo htmlspecialchars($user['name']); ?></p>
+            <p><strong>Name:</strong> <?php echo $user['name']; ?></p>
             <p><strong>Admin:</strong> <?php echo $user['is_admin'] ? 'Yes' : 'No'; ?></p>
             <form action="actions/logout.php" method="POST">
                 <button type="submit" class="btn btn-danger">Logout</button>
@@ -73,15 +72,15 @@ $user = $_SESSION['user'];
                     <tbody>
                         <?php foreach ($allQuestions as $item): ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($item['question_id']); ?></td>
-                                <td><?php echo htmlspecialchars($item['question_email']); ?></td>
-                                <td><?php echo htmlspecialchars($item['question_text']); ?></td>
+                                <td><?php echo $item['question_id']; ?></td>
+                                <td><?php echo $item['question_email']; ?></td>
+                                <td><?php echo $item['question_text']; ?></td>
                                 <td>
                                     <form action="actions/submit_answer.php" method="POST" class="answer-form">
                                         <input type="hidden" name="question_id"
-                                            value="<?php echo htmlspecialchars($item['question_id']); ?>">
+                                            value="<?php echo $item['question_id']; ?>">
                                         <textarea name="answer" rows="3"
-                                            placeholder="Enter answer"><?php echo htmlspecialchars($item['answer_text'] ?? ''); ?></textarea>
+                                            placeholder="Enter answer"><?php echo $item['answer_text'] ?? ''; ?></textarea>
                                         <button type="submit" class="btn btn-primary">Submit Answer</button>
                                     </form>
                                 </td>
@@ -89,7 +88,7 @@ $user = $_SESSION['user'];
                                     <form action="actions/delete_question.php" method="POST"
                                         onsubmit="return confirm('Are you sure you want to delete this question?');">
                                         <input type="hidden" name="question_id"
-                                            value="<?php echo htmlspecialchars($item['question_id']); ?>">
+                                            value="<?php echo $item['question_id']; ?>">
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
