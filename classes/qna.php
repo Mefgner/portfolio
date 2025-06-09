@@ -71,5 +71,37 @@ class QnA extends Database
             return null;
         }
     }
+
+    public function getAllQuestionsWithDetails()
+    {
+        try {
+            $stmt = $this->db->prepare("
+                SELECT 
+                    q.id AS question_id, 
+                    q.email AS question_email, 
+                    q.question AS question_text, 
+                    aq.answer AS answer_text 
+                FROM 
+                    questions q
+                LEFT JOIN 
+                    answered_questions aq ON q.id = aq.question_id
+                ORDER BY 
+                    q.id DESC 
+            ");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $questions = [];
+
+            while ($row = $result->fetch_assoc()) {
+                $questions[] = $row;
+            }
+
+            $stmt->close();
+            return $questions;
+        } catch (mysqli_sql_exception $e) {
+            error_log("Error in getAllQuestionsWithDetails: " . $e->getMessage());
+            return [];
+        }
+    }
 }
 ?>
