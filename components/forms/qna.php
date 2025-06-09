@@ -1,25 +1,4 @@
-<?php require_once 'classes/qna.php' ?>
-
-<?php
-use Portfolio\QnA;
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-    $question = filter_input(INPUT_POST, 'question', FILTER_SANITIZE_STRING);
-
-    if ($email && $question) {
-        $qna = new QnA('portfolio');
-        $result = $qna->submitQuestion($email, $question);
-
-        if (is_string($result)) {
-            echo $result;
-            exit;
-        }
-    }
-}
-?>
-
-<form method="POST" action="" class="qna-form">
+<form method="POST" action="actions/create_question.php" class="qna-form">
     <div class="form-group">
         <label for="email">Your Email:</label>
         <input type="email" id="email" name="email" required class="form-control">
