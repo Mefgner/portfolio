@@ -7,9 +7,6 @@ class Database
     protected $db;
     public function __construct()
     {
-        $file = file_get_contents("db_config.json");
-        $json = json_decode($file, true);
-
         $configFilePath = __DIR__ . '/../db_config.json';
 
         if (!file_exists($configFilePath)) {
@@ -23,7 +20,7 @@ class Database
             throw new \RuntimeException("Unable to read database configuration file: " . $resolvedPath);
         }
 
-        $dbConfigData = json_decode($configJson, true); // 'true' for an associative array
+        $dbConfigData = json_decode($configJson, true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             $resolvedPath = realpath($configFilePath) ?: $configFilePath;
