@@ -1,0 +1,189 @@
+/* Admin Page Specific Styles */
+.admin-section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.user-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.user-card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.user-card p {
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.user-card .btn-danger {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.user-card .btn-danger:hover {
+    background-color: #c9302c;
+}
+
+.questions-management {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.questions-management h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.questions-management table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+.questions-management th,
+.questions-management td {
+    text-align: left;
+    padding: 0.75rem;
+    border-bottom: 1px solid #eee;
+}
+
+.questions-management th {
+    background-color: #f7f7f7;
+    color: #333;
+    font-weight: bold;
+}
+
+.questions-management td .answer-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    resize: vertical;
+}
+
+.questions-management td .btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+}
+
+.questions-management .btn-primary {
+    background-color: #3498db;
+    color: white;
+    border: none;
+}
+
+.questions-management .btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.questions-management .btn-danger {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+}
+
+.questions-management .btn-danger:hover {
+    background-color: #c0392b;
+}
+
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .questions-management table, 
+    .questions-management thead, 
+    .questions-management tbody, 
+    .questions-management th, 
+    .questions-management td, 
+    .questions-management tr {
+        display: block;
+    }
+
+    .questions-management thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .questions-management tr {
+        border: 1px solid #ccc;
+        margin-bottom: 1rem;
+    }
+
+    .questions-management td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: left;
+    }
+
+    .questions-management td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .questions-management td:nth-of-type(1):before { content: "ID"; }
+    .questions-management td:nth-of-type(2):before { content: "Email"; }
+    .questions-management td:nth-of-type(3):before { content: "Question"; }
+    .questions-management td:nth-of-type(4):before { content: "Answer"; }
+    .questions-management td:nth-of-type(5):before { content: "Actions"; }
+
+    .questions-management td .answer-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .questions-management td .answer-form textarea {
+        margin-bottom: 0.5rem;
+    }
+
+    .questions-management td .answer-form .btn {
+        width: 100%;
+    }
+    
+    .questions-management td form {
+        margin-top: 0.5rem;
+    }
+    .questions-management td form .btn {
+        width: 100%;
+    }
+}
