@@ -14,12 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    if (!$answer) {
-        $_SESSION['error'] = "Answer cannot be empty.";
-        header("Location: ../unsuccess.php");
-        exit();
-    }
-
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }

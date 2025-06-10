@@ -29,6 +29,23 @@ class QnA extends Database
     public function submitAnswer($questionId, $answer)
     {
         try {
+            // Check if an answer already exists for this question
+            $checkStmt = $this->db->prepare("SELECT id FROM answered_questions WHERE question_id = ?");
+            $checkStmt->bind_param("i", $questionId);
+            $checkStmt->execute();
+            $result = $checkStmt->get_result();
+            $existingAnswer = $result->fetch_assoc();
+            $checkStmt->close();
+
+            if ($existingAnswer) {
+                // Update existing answer
+                $stmt = $this->db->prepare("UPDATE answered_questions SET answer = ? WHERE question_id = ?");
+                $stmt->bind_param("si", $answer, $questionId);
+                $stmt->execute();
+                $stmt->close();
+                return true;
+            }
+            // If no existing answer, proceed to insert (original code)
             $stmt = $this->db->prepare("INSERT INTO answered_questions (question_id, answer) VALUES (?, ?)");
             $stmt->bind_param("is", $questionId, $answer);
             $stmt->execute();
@@ -42,6 +59,13 @@ class QnA extends Database
     public function deleteQuestion($id)
     {
         try {
+            // First, delete any associated answer
+            $stmt = $this->db->prepare("DELETE FROM answered_questions WHERE question_id = ?");
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $stmt->close();
+
+            // Then, delete the question
             $stmt = $this->db->prepare("DELETE FROM questions WHERE id = ?");
             $stmt->bind_param("i", $id);
             $stmt->execute();
@@ -55,7 +79,7 @@ class QnA extends Database
     public function getAnsweredQuestions()
     {
         try {
-            $stmt = $this->db->prepare("SELECT answer, questions.question FROM answered_questions JOIN questions ON answered_questions.question_id = questions.id");
+            $stmt = $this->db->prepare("SELECT aq.answer, q.question FROM answered_questions aq JOIN questions q ON aq.question_id = q.id WHERE aq.answer IS NOT NULL AND aq.answer!='' ORDER BY aq.id DESC");
             $stmt->execute();
             $result = $stmt->get_result();
             $answeredQuestions = [];
